@@ -13,7 +13,8 @@ extension type ReadableStreamDefaultReader<T extends JSAny,
     AbortType extends JSAny>._(JSObject _) implements JSObject {
   /// Creates and returns a [ReadableStreamDefaultReader] object instance.
   external factory ReadableStreamDefaultReader(
-      ReadableStream<T, AbortType> stream);
+    ReadableStream<T, AbortType> stream,
+  );
 
   /// Returns a `Promise` that fulfills when the stream closes,
   /// or rejects if the stream throws an error or the reader's lock is released.
@@ -24,6 +25,7 @@ extension type ReadableStreamDefaultReader<T extends JSAny,
 
   @JS('cancel')
   external JSPromise<JSAny?> _cancel([
+    // ignore: unused_element_parameter Just stfu
     AbortType? reason,
   ]);
 
