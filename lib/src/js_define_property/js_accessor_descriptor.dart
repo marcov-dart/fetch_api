@@ -4,10 +4,10 @@ import 'js_accessor_descriptor_getter_method.dart';
 import 'js_accessor_descriptor_setter_method.dart';
 import 'js_property_descriptor.dart';
 
-
 /// Accessor descriptors contain functions that execute when a property
 /// is set, changed, or accessed.
-extension type JSAccessorDescriptor<T extends JSObject, R extends JSAny?>._(JSPropertyDescriptor _) implements JSPropertyDescriptor<T> {
+extension type JSAccessorDescriptor<T extends JSObject, R extends JSAny?>._(
+    JSPropertyDescriptor _) implements JSPropertyDescriptor<T> {
   /// Create new JavaScript property accessor descriptor.
   factory JSAccessorDescriptor({
     bool configurable = false,
@@ -28,7 +28,6 @@ extension type JSAccessorDescriptor<T extends JSObject, R extends JSAny?>._(JSPr
     return descriptor;
   }
 
-  @JS('')
   external factory JSAccessorDescriptor._new({
     bool configurable,
     bool enumerable,
@@ -43,7 +42,8 @@ extension type JSAccessorDescriptor<T extends JSObject, R extends JSAny?>._(JSPr
   /// the property is defined due to inheritance). The return value
   /// will be used as the value of the property.
   @JS()
-  external JSAccessorDescriptorGetterMethod<T, R>? get; // Defaults to undefined.
+  external JSAccessorDescriptorGetterMethod<T, R>?
+      get; // Defaults to undefined.
 
   /// A function which serves as a setter for the property, or `undefined` if
   /// there is no setter. When the property is assigned, this function

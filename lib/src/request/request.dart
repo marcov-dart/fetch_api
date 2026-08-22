@@ -14,25 +14,28 @@ import 'request_mode.dart';
 import 'request_redirect.dart';
 import 'request_referrer_policy.dart';
 
-
 /// The [Request] interface of the Fetch API represents a resource request.
-/// 
+///
 /// You can create a new [Request] object using the `Request()` constructor,
 /// but you are more likely to encounter a [Request] object being returned as
 /// the result of another API operation, such as a service worker
 /// `FetchEvent.request`.
-extension type Request<AbortType extends JSAny>._(JSObject _) implements JSObject {
+extension type Request<AbortType extends JSAny>._(JSObject _)
+    implements JSObject {
   /// Creates a new [Request] object.
-  /// 
+  ///
   /// [input] is a string containing the URL of the resource you want to fetch.
   /// The URL may be relative to the base URL, which is the document's
   /// `baseURI` in a window context, or `WorkerGlobalScope.location`
   /// in a worker context.
-  factory Request(String input, [ RequestInit<AbortType>? options, ])
-    => Request._new(input.toJS, options);
+  factory Request(
+    String input, [
+    RequestInit<AbortType>? options,
+  ]) =>
+      Request._new(input.toJS, options);
 
   /// Creates a new [Request] object.
-  /// 
+  ///
   /// [input] is a [Request] object, effectively creating a copy.
   /// Note the following behavioral updates to retain security while making
   /// the constructor less likely to throw exceptions:
@@ -40,11 +43,14 @@ extension type Request<AbortType extends JSAny>._(JSObject _) implements JSObjec
   ///   the [Request.referrer] is stripped out.
   /// * If this object has a [Request.mode] of [RequestMode.navigate],
   ///   the mode value is converted to [RequestMode.sameOrigin].
-  factory Request.fromRequest(Request input, [ RequestInit<AbortType>? options, ])
-    => Request._new(input, options);
+  factory Request.fromRequest(
+    Request input, [
+    RequestInit<AbortType>? options,
+  ]) =>
+      Request._new(input, options);
 
   /// Creates a new [Request] object.
-  /// 
+  ///
   /// [input] defines the resource that you wish to fetch. This can either be:
   /// * A string containing the URL of the resource you want to fetch.
   ///   The URL may be relative to the base URL, which is the document's
@@ -57,8 +63,10 @@ extension type Request<AbortType extends JSAny>._(JSObject _) implements JSObjec
   ///     the [Request.referrer] is stripped out.
   ///   * If this object has a [Request.mode] of [RequestMode.navigate],
   ///     the mode value is converted to [RequestMode.sameOrigin].
-  @JS('')
-  external factory Request._new(JSAny input, [ RequestInit<AbortType>? options, ]);
+  external factory Request._new(
+    JSAny input, [
+    RequestInit<AbortType>? options,
+  ]);
 
   /// A [ReadableStream] of the body contents.
   @JS()
@@ -76,7 +84,7 @@ extension type Request<AbortType extends JSAny>._(JSObject _) implements JSObjec
 
   /// Contains the credentials of the request (e.g., `omit`, `same-origin`,
   /// `include`).
-  /// 
+  ///
   /// The default is `same-origin`.
   @JS()
   external final String credentials;
@@ -126,30 +134,27 @@ extension type Request<AbortType extends JSAny>._(JSObject _) implements JSObjec
   external final String url;
 
   /// Controls how the request will interact with the browser's HTTP cache.
-  RequestCache get requestCache =>
-    RequestCache.from(this.cache);
+  RequestCache get requestCache => RequestCache.from(cache);
 
   /// Controls what browsers do with credentials (cookies, HTTP authentication
   /// entries, and TLS client certificates).
   RequestCredentials get requestCredentials =>
-    RequestCredentials.from(this.credentials);
+      RequestCredentials.from(credentials);
 
   /// This property is describing the request's destination.
   /// It is indicating the type of content being requested.
   RequestDestination get requestDestination =>
-    RequestDestination.from(this.destination);
+      RequestDestination.from(destination);
 
   /// Controls the mode you want to use for the request.
-  RequestMode get requestMode =>
-    RequestMode.from(this.mode);
+  RequestMode get requestMode => RequestMode.from(mode);
 
   /// Controls how to handle a redirect response.
-  RequestRedirect get requestRedirect =>
-    RequestRedirect.from(this.redirect);
+  RequestRedirect get requestRedirect => RequestRedirect.from(redirect);
 
   /// Specifies the referrer policy to use for the request.
   RequestReferrerPolicy get requestReferrerPolicy =>
-    RequestReferrerPolicy.from(this.referrerPolicy);
+      RequestReferrerPolicy.from(referrerPolicy);
 
   /// Returns a promise that resolves with an [ByteBuffer] representation of
   /// the request body.
@@ -183,25 +188,21 @@ extension type Request<AbortType extends JSAny>._(JSObject _) implements JSObjec
   /// Returns a [Future] that resolves with an [ByteBuffer] representation of
   /// the response body.
   Future<ByteBuffer> arrayBuffer() =>
-    _arrayBuffer().toDart.then((value) => value.toDart);
+      _arrayBuffer().toDart.then((value) => value.toDart);
 
   /// Returns a [Future] that resolves with a [Blob] representation of
   /// the response body.
-  Future<Blob> blob() =>
-    _blob().toDart;
+  Future<Blob> blob() => _blob().toDart;
 
   /// Returns a [Future] that resolves with a [FormData] representation of
   /// the response body.
-  Future<FormData> formData() =>
-    _formData().toDart;
+  Future<FormData> formData() => _formData().toDart;
 
   /// Returns a [Future] that resolves with the result of parsing the response
   /// body as `JSON`.
-  Future<Object?> json() =>
-    _json().toDart.then((value) => value.dartify());
+  Future<Object?> json() => _json().toDart.then((value) => value.dartify());
 
   /// Returns a promise that resolves with a text representation of
   /// the response body.
-  Future<String> text() =>
-    _text().toDart.then((value) => value.toDart);
+  Future<String> text() => _text().toDart.then((value) => value.toDart);
 }

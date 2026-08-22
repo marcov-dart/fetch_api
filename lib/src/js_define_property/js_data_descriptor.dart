@@ -2,25 +2,25 @@ import 'dart:js_interop';
 
 import 'js_property_descriptor.dart';
 
-
 /// A data descriptor includes key and value pairs that contain a property's
 /// value, regardless of whether that value is writable, configurable,
 /// or enumerable.
-extension type const JSDataDescriptor<T extends JSObject, R extends JSAny?>._(JSPropertyDescriptor<T> _) implements JSPropertyDescriptor<T> {
+extension type const JSDataDescriptor<T extends JSObject, R extends JSAny?>._(
+    JSPropertyDescriptor<T> _) implements JSPropertyDescriptor<T> {
   /// Create new JavaScript property data descriptor.
   factory JSDataDescriptor({
     bool configurable = false,
     bool enumerable = false,
     bool writable = false,
     R? value,
-  }) => JSDataDescriptor<T, R>._new(
-    configurable: configurable,
-    enumerable: enumerable,
-    writable: writable,
-    value: value,
-  );
+  }) =>
+      JSDataDescriptor<T, R>._new(
+        configurable: configurable,
+        enumerable: enumerable,
+        writable: writable,
+        value: value,
+      );
 
-  @JS('')
   external factory JSDataDescriptor._new({
     bool configurable,
     bool enumerable,

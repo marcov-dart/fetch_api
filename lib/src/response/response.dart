@@ -16,7 +16,7 @@ external final JSFunction _jsonConstructor;
 
 /// The [Response] interface of the Fetch API represents the response
 /// to a request.
-/// 
+///
 /// You can create a new [Response] object using the `Response()` constructor,
 /// but you are more likely to encounter a [Response] object being returned
 /// as the result of another API operation —for example, a service worker
@@ -24,29 +24,39 @@ external final JSFunction _jsonConstructor;
 @staticInterop
 extension type Response._(JSObject _) implements JSObject {
   /// Creates a new [Response] object.
-  factory Response([ ResponseBody? body, ResponseOptions? options, ]) =>
-    Response._new(body?.toJS, options);
+  factory Response([
+    ResponseBody? body,
+    ResponseOptions? options,
+  ]) =>
+      Response._new(body?.toJS, options);
 
   /// Creates a new response with a different URL.
-  factory Response.redirect(String url, [ int status = 302, ]) =>
-    Response._redirect(url, status);
+  factory Response.redirect(
+    String url, [
+    int status = 302,
+  ]) =>
+      Response._redirect(url, status);
 
   /// Returns a new [Response] object associated with a network error.
-  @JS()
   external factory Response.error();
 
   /// Returns a new [Response] object for returning the provided JSON encoded
   /// data.
-  factory Response.json(Map<String, dynamic> data, [ ResponseOptions? options, ]) =>
-    _jsonConstructor.callAsFunction(
-      _jsonConstructor, data.jsify()! as JSObject,
-      options,
-    )! as Response;
+  factory Response.json(
+    Map<String, dynamic> data, [
+    ResponseOptions? options,
+  ]) =>
+      _jsonConstructor.callAsFunction(
+        _jsonConstructor,
+        data.jsify()! as JSObject,
+        options,
+      )! as Response;
 
-  @JS('')
-  external factory Response._new([ JSAny? body, ResponseOptions? options, ]); 
+  external factory Response._new([
+    JSAny? body,
+    ResponseOptions? options,
+  ]);
 
-  @JS('redirect')
   external factory Response._redirect(String url, int status);
 
   /// A [ReadableStream] of the body contents.
@@ -118,31 +128,26 @@ extension type Response._(JSObject _) implements JSObject {
   external JSPromise<JSString> _text();
 
   /// The type of the response (e.g., basic, cors).
-  ResponseType get responseType =>
-    ResponseType.from(type);
+  ResponseType get responseType => ResponseType.from(type);
 
   /// Returns a [Future] that resolves with an [ByteBuffer] representation of
   /// the response body.
   Future<ByteBuffer> arrayBuffer() =>
-    _arrayBuffer().toDart.then((value) => value.toDart);
+      _arrayBuffer().toDart.then((value) => value.toDart);
 
   /// Returns a [Future] that resolves with a [Blob] representation of
   /// the response body.
-  Future<Blob> blob() =>
-    _blob().toDart;
+  Future<Blob> blob() => _blob().toDart;
 
   /// Returns a [Future] that resolves with a [FormData] representation of
   /// the response body.
-  Future<FormData> formData() =>
-    _formData().toDart;
+  Future<FormData> formData() => _formData().toDart;
 
   /// Returns a [Future] that resolves with the result of parsing the response
   /// body text as `JSON`.
-  Future<Object?> json() =>
-    _json().toDart.then((value) => value.dartify());
+  Future<Object?> json() => _json().toDart.then((value) => value.dartify());
 
   /// Returns a promise that resolves with a text representation of
   /// the response body.
-  Future<String> text() =>
-    _text().toDart.then((value) => value.toDart);
+  Future<String> text() => _text().toDart.then((value) => value.toDart);
 }

@@ -2,7 +2,6 @@ import 'dart:js_interop';
 
 import '../headers.dart';
 
-
 /// An object containing any custom settings that you want to apply to the
 /// response.
 extension type ResponseOptions._(JSObject _) implements JSObject {
@@ -11,19 +10,19 @@ extension type ResponseOptions._(JSObject _) implements JSObject {
     int status = 200,
     String statusText = '',
     Headers? headers,
-  }) => ResponseOptions._new(
-    status: status,
-    statusText: statusText,
-    headers: headers,
-  );
+  }) =>
+      ResponseOptions._new(
+        status: status,
+        statusText: statusText,
+        headers: headers,
+      );
 
-  @JS()
   external factory ResponseOptions._new({
     int status,
     String statusText,
     Headers? headers,
   });
-  
+
   /// The status code for the response, e.g., `200`.
   @JS()
   external int? status;
