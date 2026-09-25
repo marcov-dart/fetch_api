@@ -25,7 +25,6 @@ extension type ReadableStreamDefaultReader<T extends JSAny,
 
   @JS('cancel')
   external JSPromise<JSAny?> _cancel([
-    // ignore: unused_element_parameter Just stfu
     AbortType? reason,
   ]);
 

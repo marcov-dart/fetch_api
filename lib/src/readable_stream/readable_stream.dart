@@ -68,7 +68,6 @@ extension type ReadableStream<T extends JSAny, AbortType extends JSAny>._(
   // This function returns `undefined` which cannot be cast to dart `void`.
   // ignore: prefer_void_to_null
   external JSPromise<Null> _cancel([
-    // ignore: unused_element_parameter Just stfu
     AbortType? reason,
   ]);
 
